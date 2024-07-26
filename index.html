@@ -11,40 +11,6 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <script src="https://w.soundcloud.com/player/api.js"></script>
-    <style>
-      /* CSS untuk membuat pemutar musik mengambang */
-      .floating-player {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        width: 100%;
-        max-width: 300px; /* Maksimal lebar */
-        z-index: 1000;
-        background: white;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        box-sizing: border-box;
-        border-radius: 10px;
-        transition: transform 0.3s ease-in-out;
-      }
-
-      @media (max-width: 600px) {
-        .floating-player {
-          bottom: 5px;
-          right: 5px;
-          max-width: 30%;
-          width: 30%;
-          border-radius: 40px;
-        }
-      }
-
-      iframe {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
@@ -61,49 +27,6 @@
       <p>&copy; IT Lombok 2024</p>
     </footer>
 
-    <!-- Pemutar Musik SoundCloud dengan Parameter -->
-    <div class="floating-player">
-      <iframe
-        id="sc-widget"
-        width="90%"
-        height="166"
-        scrolling="no"
-        frameborder="no"
-        allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1767936495&auto_play=true&color=%23ff5500&buying=false&sharing=true&download=false&show_artwork=true&show_playcount=true&show_user=true&single_active=true"
-      ></iframe>
-    </div>
-
     <script src="script.js"></script>
-    <script>
-      // Memuat dan mengatur widget SoundCloud dengan auto play
-      var iframeElement = document.getElementById("sc-widget");
-      var widget = SC.Widget(iframeElement);
-
-      widget.bind(SC.Widget.Events.READY, function () {
-        console.log("Widget is ready!");
-        widget.play(); // Tambahkan ini untuk auto play
-      });
-
-      widget.bind(SC.Widget.Events.PLAY, function () {
-        console.log("Track is playing");
-      });
-
-      widget.bind(SC.Widget.Events.PAUSE, function () {
-        console.log("Track is paused");
-      });
-
-      widget.bind(SC.Widget.Events.FINISH, function () {
-        console.log("Track has finished");
-      });
-
-      widget.bind(SC.Widget.Events.ERROR, function (error) {
-        console.error("Error occurred:", error);
-      });
-
-      // Contoh metode lainnya
-      widget.setVolume(50); // Set volume to 50%
-      widget.seekTo(30000); // Seek to 30 seconds
-    </script>
   </body>
 </html>
