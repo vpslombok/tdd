@@ -1,10 +1,12 @@
+/* Reset dasar dan pengaturan untuk body dan html */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Menonaktifkan scroll pada body */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Menyusun body agar konten terpusat secara vertikal dan horizontal */
 body {
     display: flex;
     justify-content: center;
@@ -12,47 +14,54 @@ body {
     flex-direction: column;
     height: 100vh;
     background: linear-gradient(to right, #6a11cb, #2575fc);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
+    transition: background 0.3s ease;
 }
 
+/* Kontainer utama form */
 .container {
     text-align: center;
-    background: rgba(255, 255, 255, 0.8); /* Latar belakang form yang lebih cerah */
+    background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 90vw;
-    max-height: 85vh; /* Ubah tinggi maksimum agar footer terlihat */
+    max-height: 85vh;
     box-sizing: border-box;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
+/* Judul */
 h2 {
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: bold;
-    color: #000; /* Mengubah warna teks h2 menjadi hitam */
+    color: #000;
 }
 
+/* Gaya canvas */
 canvas {
-    border: 2px dashed #000000;
+    border: 2px dashed #000;
     border-radius: 10px;
     background: #fff;
     cursor: crosshair;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 200%;
     max-height: 90vh;
-    margin-bottom: 20px; /* Menambahkan jarak bawah pada canvas */
+    margin-bottom: 20px;
 }
 
+/* Tombol grup */
 .button-group {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
+/* Tombol */
 button {
     margin: 5px;
     padding: 10px 20px;
@@ -64,59 +73,144 @@ button {
     background-color: #2575fc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-weight: bold;
+    transition: background 0.3s ease;
 }
 
+/* Gaya tombol saat hover */
 button:hover {
     background-color: #0c3d8d;
 }
 
+/* Gaya tombol saat aktif */
 button:active {
     background-color: #185bb4;
 }
 
+/* Input nama file */
 input {
-    width: 25rem;
+    width: 100%;
+    max-width: 25rem;
     padding: 10px;
-    border: 2px solid #000000; /* Border input */
+    border: 2px solid #000;
     border-radius: 5px;
     font-size: 16px;
-    color: #333; /* Teks input */
-    background: #fff; /* Latar belakang input */
-    box-sizing: border-box; /* Memastikan padding dimasukkan dalam ukuran total elemen */
-    margin-top: 10px; /* Jarak atas untuk input */
+    background: #fff;
+    color: #333;
+    margin-top: 10px;
+    box-sizing: border-box;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Warna placeholder pada input */
 input::placeholder {
-    color: #aaa; /* Warna placeholder */
+    color: #aaa;
 }
 
+/* Gaya input saat fokus */
 input:focus {
-    border-color: #0056b3; /* Warna border saat fokus */
-    outline: none; /* Menghilangkan outline default pada fokus */
+    border-color: #0056b3;
+    outline: none;
+    transform: scale(1.05);
 }
 
-footer {
-    margin-top: 30px; /* Mengatur footer tetap di bawah */
-    padding: 10px;
+/* Mode gelap */
+body.dark-mode {
+    background: #121212;
     color: #fff;
-    font-size: 14px;
-    text-align: center;
 }
 
+body.dark-mode .container {
+    background: rgba(30, 30, 30, 0.8);
+}
+
+body.dark-mode h2 {
+    color: #fff;
+}
+
+body.dark-mode canvas {
+    background: #333;
+    border: 2px dashed #fff;
+}
+
+body.dark-mode button {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode button:hover {
+    background-color: #444;
+}
+
+/* Responsif untuk inputan dan elemen lainnya */
 @media (max-width: 600px) {
+    input {
+        width: 90%;
+        max-width: none;
+    }
+
     button {
         padding: 10px 15px;
         font-size: 14px;
     }
-    input {
-        width: 20rem;
-    }
+
     footer {
         font-size: 12px;
     }
+
     canvas {
         width: 100%;
         height: auto;
     }
 }
 
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Tombol saklar untuk mode gelap/terang */
+.switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.switch input {
+    display: none;
+}
+
+.switch-label {
+    background-color: #2575fc;
+    border-radius: 50px;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.switch-label::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.switch input:checked + .switch-label {
+    background-color: #0c3d8d;
+}
+
+.switch input:checked + .switch-label::before {
+    transform: translateX(30px);
+}
