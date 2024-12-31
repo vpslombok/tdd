@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             context.lineTo(e.offsetX, e.offsetY);
         }
-        
+
         context.lineWidth = 4;
         context.lineCap = 'round';
         context.strokeStyle = 'black';
@@ -52,12 +52,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('save-signature').addEventListener('click', function () {
         const name = document.getElementById('name').value.trim();
         const dataUrl = canvas.toDataURL('image/png');
-        
+
         if (name === '') {
             alert('Silakan isi nama sebelum menyimpan tanda tangan.');
             return;
         }
-        
+
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = name + '.png'; // Menggunakan nama sebagai nama file
@@ -66,5 +66,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('clear-signature').addEventListener('click', function () {
         context.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+    // Mode Gelap/Terang
+    const toggleTheme = document.getElementById('toggle-theme');
+    const body = document.body;
+
+    // Cek preferensi tema dari localStorage
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        body.classList.add('dark-mode');
+        toggleTheme.checked = true;
+    }
+
+    // Tambahkan event listener pada saklar
+    toggleTheme.addEventListener('change', () => {
+        if (toggleTheme.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('dark-mode', 'enabled');
+        } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('dark-mode', 'disabled');
+        }
     });
 });
